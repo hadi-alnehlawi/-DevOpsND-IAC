@@ -1,0 +1,78 @@
+Parameters:
+  ENV:
+    Description: Name of Whole setup
+    Type: String
+  
+  VpcID:
+    Description: The primary IPv4 CIDR block for the VPC
+    Type: String
+  PublicSubnetCidr1:
+    Description: CIDR block for the PublicSubnet1
+    Type: String
+  PublicSubnetCidr2:
+    Description: CIDR block for the PublicSubnet1
+    Type: String
+  PrivateSubnetCidr1:
+    Description: CIDR block for the PrivateSubnet1
+    Type: String
+  PrivateSubnetCidr2:
+    Description: CIDR block for the PrivateSubnet2
+    Type: String
+
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcID
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: !Ref ENV
+  IgwUdacity:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: keyname
+          Value: !Ref ENV
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref igwUdacitya
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PublicSubnetCidr1 
+      Tags:
+        - Key: keyname
+          Value: value
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PublicSubnetCidr2
+      Tags:
+        - Key: keyname
+          Value: value
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PrivateSubnetCidr1 
+      Tags:
+        - Key: keyname
+          Value: value
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      VpcId: !Ref VPC
+      CidrBlock: !Ref PrivateSubnetCidr2
+      Tags:
+        - Key: keyname
+          Value: value
