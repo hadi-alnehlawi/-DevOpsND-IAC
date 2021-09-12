@@ -29,44 +29,52 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref ENV
-  IgwUdacity:
+
+  InternetGatewayUdacity:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
-        - Key: keyname
-          Value: !Ref ENV
+        - Key: Name
+          Value: !Sub "${ENV}-InternetGateway"
+
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       VpcId: !Ref VPC
-      InternetGatewayId: !Ref igwUdacitya
+      InternetGatewayId: !Ref InternetGatewayUdacity
+
   PublicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: !Select [0, !GetAZs ""]
       VpcId: !Ref VPC
-      CidrBlock: !Ref PublicSubnetCidr1 
+      CidrBlock: !Ref PublicSubnetCidr1
+      MapPublicIpOnLaunch: true
       Tags:
-        - Key: keyname
-          Value: value
+        - Key: Name
+          Value: !Sub "${ENV}-PublicSubnet1"
+
   PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: !Select [1, !GetAZs ""]
       VpcId: !Ref VPC
       CidrBlock: !Ref PublicSubnetCidr2
+      MapPublicIpOnLaunch: true
       Tags:
-        - Key: keyname
-          Value: value
+        - Key: Name
+          Value: !Sub "${ENV}-PublicSubnet2"
+
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: !Select [0, !GetAZs ""]
       VpcId: !Ref VPC
-      CidrBlock: !Ref PrivateSubnetCidr1 
+      CidrBlock: !Ref PrivateSubnetCidr1
       Tags:
-        - Key: keyname
-          Value: value
+        - Key: Name
+          Value: !Sub "${ENV}-PrivateSubnet1"
+
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -74,5 +82,41 @@ Resources:
       VpcId: !Ref VPC
       CidrBlock: !Ref PrivateSubnetCidr2
       Tags:
-        - Key: keyname
-          Value: value
+        - Key: Name
+          Value: !Sub "${ENV}-PrivateSubnet2"
+
+  NATGatewayEIP1:
+    Type: AWS::EC2::EIP
+    DependsOn: AttachGateway
+    Properties:
+      Domain: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub "${ENV}-NATGatewayEIP1"
+
+  NATGatewayEIP2:
+    Type: AWS::EC2::EIP
+    DependsOn: AttachGateway
+    Properties:
+      Domain: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub "${ENV}-NATGatewayEIP2"
+
+  NATGateWay1:
+    Type: AWS::EC2::VPNGateway
+    Properties:
+      AllocationId: !GetAtt NATGatewayEIP1.AllocationId
+      SubnetId: !Ref PublicSubnet1
+      Tags:
+        - Key: Name
+          Value: !Sub "${ENV}-NATGateWay1"
+
+  NATGateWay2:
+    Type: AWS::EC2::VPNGateway
+    Properties:
+      AllocationId: !GetAtt NATGatewayEIP2.AllocationId
+      SubnetId: !Ref PublicSubnet2
+      Tags:
+        - Key: Name
+          Value: !Sub "${ENV}-NATGateWay2"
