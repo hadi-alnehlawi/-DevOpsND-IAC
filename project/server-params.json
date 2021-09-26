@@ -2,5 +2,13 @@
 	{
 		"ParameterKey": "EnvironmentName",
 		"ParameterValue": "HighAvailabilityWebAppProject"
-	}
+	},
+	{
+		"ParameterKey": "EC2ImageId",
+		"ParameterValue": "ami-0d1cd67c26f5fca19"
+	},
+	{
+		"ParameterKey": "EC2InstanceType",
+		"ParameterValue": "t3.medium"
+	},
 ]

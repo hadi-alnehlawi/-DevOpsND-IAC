@@ -5,7 +5,7 @@ Parameters:
     EnvironmentName:
         Description: An environment name that will be prefixed to resource names
         Type: String
-
+        
     VpcCIDR: 
         Description: Please enter the IP range (CIDR notation) for this VPC
         Type: String
@@ -241,7 +241,7 @@ Outputs:
     PublicSubnet2: 
         Description: A reference to the public subnet in the 2nd Availability Zone
         Value: !Ref PublicSubnet2
-        Export:aws cloudformation update-stack --stack-name $1 --template-body file://$2  --parameters file://$3 --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-west-2
+        Export: aws cloudformation update-stack --stack-name $1 --template-body file://$2  --parameters file://$3 --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1
 
     PrivateSubnet1:
         Description: A reference to the private subnet in the 1st Availability Zone
