@@ -1,0 +1,1 @@
+aws cloudformation list-stacks --output json | jq '.StackSummaries[] | select(.StackStatus!="DELETE_COMPLETE")'
