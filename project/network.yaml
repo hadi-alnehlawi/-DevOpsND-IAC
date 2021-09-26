@@ -241,7 +241,8 @@ Outputs:
     PublicSubnet2: 
         Description: A reference to the public subnet in the 2nd Availability Zone
         Value: !Ref PublicSubnet2
-        Export: aws cloudformation update-stack --stack-name $1 --template-body file://$2  --parameters file://$3 --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1
+        Export: 
+          Name: !Sub ${EnvironmentName}-PUB2-SN
 
     PrivateSubnet1:
         Description: A reference to the private subnet in the 1st Availability Zone
