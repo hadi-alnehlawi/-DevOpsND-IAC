@@ -10,5 +10,9 @@
 	{
 		"ParameterKey": "EC2InstanceType",
 		"ParameterValue": "t2.medium"
+	},
+	{
+		"ParameterKey": "KeyName",
+		"ParameterValue": "udacity"
 	}
 ]
