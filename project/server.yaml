@@ -11,6 +11,9 @@ Parameters:
     EC2InstanceType:
       Description: EC2 Instance Type
       Type: String
+    KeyName:
+      Description: EC2 KeyPair
+      Type: String
 
 Resources:
   LBSecGroup:
@@ -69,12 +72,13 @@ Resources:
             Action: 
               - "sts:AssumeRole"
       Path: "/"
+
   ProfileWithRolesForOurApp: 
     Type: AWS::IAM::InstanceProfile
     Properties: 
       Path: "/"
       Roles: 
-        - !Ref UdacityS3ReadOnlyEC2      
+        - !Ref UdacityS3ReadOnlyEC2
 
   WebAppLaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
@@ -98,6 +102,7 @@ Resources:
         - DeviceName: "/dev/sdk"
           Ebs:
             VolumeSize: '10'
+      KeyName: !Ref KeyName
 
   WebAppGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
