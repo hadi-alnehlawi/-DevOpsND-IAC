@@ -88,7 +88,7 @@ Resources:
           systemctl start apache2.service
           cd /var/www/html
           aws s3 cp s3://udacity-demo/udacity.zip .
-          unzip -o udacity.zip 
+          unzip -o udacity.zip
           exec > >(tee /var/log/user-data.log/logger -t user-data -s 2>/dev/console)
       ImageId: !Ref EC2ImageId
       SecurityGroups:
