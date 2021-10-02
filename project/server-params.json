@@ -9,7 +9,7 @@
 	},
 	{
 		"ParameterKey": "EC2InstanceType",
-		"ParameterValue": "t2.medium"
+		"ParameterValue": "t2.micro"
 	},
 	{
 		"ParameterKey": "KeyName",

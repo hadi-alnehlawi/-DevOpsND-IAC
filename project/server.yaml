@@ -91,9 +91,7 @@ Resources:
           apt-get install apache2 -y
           systemctl start apache2.service
           cd /var/www/html
-          aws s3 cp s3://udacity-demo/udacity.zip .
-          unzip -o udacity.zip
-          exec > >(tee /var/log/user-data.log/logger -t user-data -s 2>/dev/console)
+          aws s3 cp s3://udacity-demo/index.html .
       ImageId: !Ref EC2ImageId
       SecurityGroups:
         - Ref: WebServerSecurityGroup
