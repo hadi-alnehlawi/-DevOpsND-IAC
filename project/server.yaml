@@ -88,8 +88,7 @@ Resources:
           #!/bin/bash
           sudo yum -y install httpd
           sudo service httpd start
-          sudo /var/www/html
-          sudo wget . https://udacity-demo.s3.amazonaws.com/index.html
+          sudo wget /var/www/html https://udacity-demo.s3.amazonaws.com/index.html
       ImageId: !Ref EC2ImageId
       SecurityGroups:
         - Ref: WebServerSecurityGroup
