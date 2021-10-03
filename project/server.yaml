@@ -89,7 +89,6 @@ Resources:
           sudo yum -y install httpd
           sudo service httpd start
           wget . https://udacity-demo.s3.amazonaws.com/index.html
-          systemctl start apache2.service
       ImageId: !Ref EC2ImageId
       SecurityGroups:
         - Ref: WebServerSecurityGroup
@@ -167,7 +166,6 @@ Outputs:
     Value: !Join ["", ["http://", !GetAtt WebAppLB.DNSName]]
     Export:
       Name: !Sub ${EnvironmentName}-LB-DNSName
-          
-           
+
 
 
