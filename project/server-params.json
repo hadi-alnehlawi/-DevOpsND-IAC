@@ -5,7 +5,7 @@
 	},
 	{
 		"ParameterKey": "EC2ImageId",
-		"ParameterValue": "ami-029c64b3c205e6cce"
+		"ParameterValue": "ami-09b9b17384f68fd7c"
 	},
 	{
 		"ParameterKey": "EC2InstanceType",
@@ -13,6 +13,6 @@
 	},
 	{
 		"ParameterKey": "KeyName",
-		"ParameterValue": "udacity"
+		"ParameterValue": "udacity-sa"
 	}
 ]

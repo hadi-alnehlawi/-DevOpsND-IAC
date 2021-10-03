@@ -63,7 +63,7 @@ Resources:
             MapPublicIpOnLaunch: true
             Tags: 
                 - Key: Name 
-                  Value: !Sub ${EnvironmentName} Public Subnet (AZ1)
+                  Value: !Sub ${EnvironmentName} Public Subnet1 (AZ1)
 
     PublicSubnet2: 
         Type: AWS::EC2::Subnet
@@ -74,7 +74,7 @@ Resources:
             MapPublicIpOnLaunch: true
             Tags: 
                 - Key: Name 
-                  Value: !Sub ${EnvironmentName} Public Subnet (AZ2)
+                  Value: !Sub ${EnvironmentName} Public Subnet2 (AZ2)
 
     PrivateSubnet1: 
         Type: AWS::EC2::Subnet
@@ -85,7 +85,7 @@ Resources:
             MapPublicIpOnLaunch: false
             Tags: 
                 - Key: Name 
-                  Value: !Sub ${EnvironmentName} Private Subnet (AZ1)
+                  Value: !Sub ${EnvironmentName} Private Subnet1 (AZ1)
 
     PrivateSubnet2: 
         Type: AWS::EC2::Subnet
@@ -96,7 +96,7 @@ Resources:
             MapPublicIpOnLaunch: false
             Tags: 
                 - Key: Name 
-                  Value: !Sub ${EnvironmentName} Private Subnet (AZ2)  
+                  Value: !Sub ${EnvironmentName} Private Subnet2 (AZ2)  
 
     NatGateway1EIP:
         Type: AWS::EC2::EIP
