@@ -1,3 +1,5 @@
+**Project URL**
+http://serve-webap-xxlf4z3umvu3-998618970.sa-east-1.elb.amazonaws.com/index.html
 **Run The Project**
 
 1- install the required network infrastructure first
